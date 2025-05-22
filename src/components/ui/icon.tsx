@@ -1,36 +1,12 @@
 import React from "react";
-import {
-  Cube,
-  Users,
-  BookOpen,
-  Download,
-  ArrowRight,
-  Star,
-  Heart,
-  Play,
-  RocketIcon,
-  CircleAlert,
-} from "lucide-react";
+import { LucideIcon, icons } from "lucide-react";
 
 interface IconProps {
-  name: string;
+  name: keyof typeof icons;
   size?: number;
   className?: string;
-  fallback?: string;
+  fallback?: keyof typeof icons;
 }
-
-const iconMap = {
-  Cube,
-  Users,
-  BookOpen,
-  Download,
-  ArrowRight,
-  Star,
-  Heart,
-  Play,
-  RocketIcon,
-  CircleAlert,
-};
 
 const Icon: React.FC<IconProps> = ({
   name,
@@ -38,9 +14,12 @@ const Icon: React.FC<IconProps> = ({
   className = "",
   fallback = "CircleAlert",
 }) => {
-  const IconComponent =
-    iconMap[name as keyof typeof iconMap] ||
-    iconMap[fallback as keyof typeof iconMap];
+  const IconComponent = icons[name] || icons[fallback];
+
+  if (!IconComponent) {
+    console.warn(`Icon "${name}" not found, using fallback "${fallback}"`);
+    return null;
+  }
 
   return <IconComponent size={size} className={className} />;
 };
