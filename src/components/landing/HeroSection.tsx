@@ -41,7 +41,7 @@ const HeroSection = () => {
             size="lg"
             className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3"
           >
-            <Icon name="RocketIcon" className="mr-2" size={20} />
+            <Icon name="Rocket" className="mr-2" size={20} />
             Присоединиться к сообществу
           </Button>
           <Button size="lg" variant="outline" className="text-lg px-8 py-3">
