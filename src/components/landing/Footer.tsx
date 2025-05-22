@@ -23,7 +23,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <Icon name="Cube" className="text-purple-400" size={24} />
+              <Icon name="Box" className="text-purple-400" size={24} />
               <span className="text-xl font-bold">3DРоссия</span>
             </div>
             <p className="text-gray-400">
