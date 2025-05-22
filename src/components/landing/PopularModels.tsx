@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,14 +15,38 @@ interface PopularModelsProps {
 }
 
 const PopularModels = ({ models }: PopularModelsProps) => {
+  const [likedModels, setLikedModels] = useState<Set<number>>(new Set());
+
+  const handleLike = (modelId: number) => {
+    setLikedModels((prev) => {
+      const newLiked = new Set(prev);
+      if (newLiked.has(modelId)) {
+        newLiked.delete(modelId);
+      } else {
+        newLiked.add(modelId);
+      }
+      return newLiked;
+    });
+  };
+
+  const handleDownload = (modelTitle: string) => {
+    alert(`Скачивание "${modelTitle}" начнется после регистрации!`);
+  };
+
+  const handleViewAll = () => {
+    document
+      .getElementById("community")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <section id="models" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900">
             Популярные модели
           </h2>
-          <Button variant="outline">
+          <Button variant="outline" onClick={handleViewAll}>
             Посмотреть все
             <Icon name="ArrowRight" className="ml-2" size={16} />
           </Button>
@@ -33,6 +57,7 @@ const PopularModels = ({ models }: PopularModelsProps) => {
             <Card
               key={model.id}
               className="hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => handleDownload(model.title)}
             >
               <div className="aspect-video bg-gray-200 rounded-t-lg overflow-hidden">
                 <img
@@ -69,8 +94,19 @@ const PopularModels = ({ models }: PopularModelsProps) => {
                       </span>
                     </div>
                   </div>
-                  <Button size="sm" variant="ghost">
-                    <Icon name="Heart" size={16} />
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleLike(model.id);
+                    }}
+                    className={likedModels.has(model.id) ? "text-red-500" : ""}
+                  >
+                    <Icon
+                      name={likedModels.has(model.id) ? "Heart" : "Heart"}
+                      size={16}
+                    />
                   </Button>
                 </div>
               </CardContent>

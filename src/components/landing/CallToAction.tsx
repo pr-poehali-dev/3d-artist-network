@@ -2,6 +2,16 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 
 const CallToAction = () => {
+  const handleCreateAccount = () => {
+    alert(
+      "Регистрация в разработке! Присоединяйтесь к Telegram: https://t.me/+QgiLIa1gFRY4Y2Iy",
+    );
+  };
+
+  const handleLearnMore = () => {
+    document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-600 to-indigo-600">
       <div className="max-w-4xl mx-auto text-center">
@@ -16,6 +26,7 @@ const CallToAction = () => {
           <Button
             size="lg"
             className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-3"
+            onClick={handleCreateAccount}
           >
             Создать аккаунт бесплатно
           </Button>
@@ -23,6 +34,7 @@ const CallToAction = () => {
             size="lg"
             variant="outline"
             className="border-white text-white hover:bg-white hover:text-purple-600 text-lg px-8 py-3"
+            onClick={handleLearnMore}
           >
             Узнать больше
           </Button>

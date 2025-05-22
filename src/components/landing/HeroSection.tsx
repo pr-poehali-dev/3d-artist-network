@@ -3,6 +3,16 @@ import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 
 const HeroSection = () => {
+  const handleJoinCommunity = () => {
+    alert(
+      "Присоединяйтесь к нашему Telegram сообществу: https://t.me/+QgiLIa1gFRY4Y2Iy",
+    );
+  };
+
+  const handleWatchDemo = () => {
+    alert("Демо видео скоро будет доступно!");
+  };
+
   const features = [
     {
       icon: "Users",
@@ -40,11 +50,17 @@ const HeroSection = () => {
           <Button
             size="lg"
             className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3"
+            onClick={handleJoinCommunity}
           >
             <Icon name="Rocket" className="mr-2" size={20} />
             Присоединиться к сообществу
           </Button>
-          <Button size="lg" variant="outline" className="text-lg px-8 py-3">
+          <Button
+            size="lg"
+            variant="outline"
+            className="text-lg px-8 py-3"
+            onClick={handleWatchDemo}
+          >
             <Icon name="Play" className="mr-2" size={20} />
             Посмотреть демо
           </Button>
